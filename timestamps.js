@@ -22,7 +22,7 @@ async function getTimestamps(hashes) {
 }
 
 /**
- * Morph the normal Nano node responses to include timestamps
+ * Morph the normal Badem node responses to include timestamps
  */
 async function mapAccountHistory(nodeResult) {
   if (!nodeResult || !nodeResult.history) return nodeResult;
