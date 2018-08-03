@@ -77,7 +77,7 @@ app.post('/api/node-api', async (req, res) => {
   }
 
   // Send the request to the Badem node and return the response
-  request({ method: 'post', uri: (workRequest || representativeRequest) ? nanoWorkNodeUrl : nanoNodeUrl, body: req.body, json: true })
+  request({ method: 'post', uri: (workRequest || representativeRequest) ? bademWorkNodeUrl : bademNodeUrl, body: req.body, json: true })
     .then(async (proxyRes) => {
       if (proxyRes) {
         if (workRequest && proxyRes.work) {
