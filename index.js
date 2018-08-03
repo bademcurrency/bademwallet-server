@@ -3,8 +3,8 @@ require('dotenv').config(); // Load variables from .env into the environment
 const timestamps = require('./timestamps');
 
 /** Configuration **/
-const nanoNodeUrl = process.env.NANO_NODE_URL || `http://172.31.7.100:7076`; // Nano node RPC url
-const nanoWorkNodeUrl = process.env.NANO_WORK_NODE_URL || `http://74.82.30.7:7076`; // Nano work node RPC url
+const bademNodeUrl = process.env.BADEM_NODE_URL || `http://[::1]:2225`; // Badem node RPC url
+const bademWorkNodeUrl = process.env.NADEM_WORK_NODE_URL || `http://[::1]:2225`; // Badem work node RPC url
 const listeningPort = process.env.APP_PORT || 9950; // Port this app will listen on
 
 const useRedisCache = !!process.env.USE_REDIS || true; // Change this if you are not running a Redis server.  Will use in memory cache instead.
@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.static('static'));
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/static/index.html`));
 
-// Allow certain requests to the Nano RPC and cache work requests
+// Allow certain requests to the Badem RPC and cache work requests
 app.post('/api/node-api', async (req, res) => {
   const allowedActions = [
     'account_history',
@@ -76,7 +76,7 @@ app.post('/api/node-api', async (req, res) => {
     representativeRequest = true;
   }
 
-  // Send the request to the Nano node and return the response
+  // Send the request to the Badem node and return the response
   request({ method: 'post', uri: (workRequest || representativeRequest) ? nanoWorkNodeUrl : nanoNodeUrl, body: req.body, json: true })
     .then(async (proxyRes) => {
       if (proxyRes) {
