@@ -7,7 +7,7 @@ const bademNodeUrl = process.env.BADEM_NODE_URL || `http://[::1]:2225`; // Badem
 const bademWorkNodeUrl = process.env.NADEM_WORK_NODE_URL || `http://[::1]:2225`; // Badem work node RPC url
 const listeningPort = process.env.APP_PORT || 9950; // Port this app will listen on
 
-const useRedisCache = !!process.env.USE_REDIS || true; // Change this if you are not running a Redis server.  Will use in memory cache instead.
+const useRedisCache = !!process.env.USE_REDIS || false; // Change this if you are not running a Redis server.  Will use in memory cache instead.
 const redisCacheUrl = process.env.REDIS_HOST || `172.31.25.214`; // Url to the redis server (If used)
 const redisCacheTime = 60 * 60 * 24; // Store work for 24 Hours
 const memoryCacheLength = 800; // How much work to store in memory (If used)
